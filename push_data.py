@@ -173,12 +173,8 @@ class App_Control:
             messagebox.showwarning("Error","Login failed wrong user credentials")
             self.comments.set('--------------')
         finally:
-            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to dl_prod_ro;') 
-            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to celilogl;')
-            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to mvalenta;')
-            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to jrrensbu;')
-            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to nekolaja;')
-            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to prazakm;')
+            #Grant permission - replace self.rs_username.get() to different user who should have access to newly created table
+            self.conn.execute('GRANT ALL ON hr_emea.' + self.destination_table.get() +' to' + self.rs_username.get() + ';')
             self.conn.close()
         
         self.comments.set('Total {} minutes'.format((datetime.now() - self.start).seconds/60))
