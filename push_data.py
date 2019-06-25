@@ -157,8 +157,9 @@ class App_Control:
         
     def redshift_conn(self):       
         self.start = datetime.now()
-        try:       
-            self.engine = create_engine('postgres+psycopg2://'+self.rs_username.get()+':'+self.rs_password.get()+'@hroa-finance.ch519wphpjjd.us-east-1.redshift.amazonaws.com:8192/hr_finance_csvcs', connect_args={'sslmode':'require'}, echo=False)
+        try:  
+            #change _server_ with your server  
+            self.engine = create_engine('postgres+psycopg2://'+self.rs_username.get()+':'+self.rs_password.get()+'_server_', connect_args={'sslmode':'require'}, echo=False)
             self.conn = self.engine.connect()
             
             if self.filename.endswith('.csv'):
